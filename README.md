@@ -9,7 +9,7 @@ Drawing app with Wemos D1 Mini
 * 2 Leds
 
 # Circuit Diagram
-
+![alt text](img/schema.png)
 # Library
 
 # Installation
