@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tempImageView: UIImageView!
     
     var listPoint: [CGPoint] = []
+    var sentPoint: [CGPoint] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ class ViewController: UIViewController {
     @IBAction func clearAction(_ sender: Any) {
         mainImageView.image = nil
         listPoint = []
+        sentPoint = []
     }
     
     @IBAction func sendAction(_ sender: Any) {
@@ -39,7 +41,7 @@ class ViewController: UIViewController {
         let listPoint = self.listPoint
         
         
-        
+        print(listPoint)
         
         print("send")
     }
@@ -65,6 +67,31 @@ class ViewController: UIViewController {
         if !listPoint.contains(point) {
             listPoint.append(point)
         }
+        
+        while listPoint.count - sentPoint.count > 40 {
+            sendPoints( );
+        }
+    }
+    
+    func sendPoints( ) {
+        var pointsToSendNow: [CGPoint] = []
+        
+        listPoint.forEach { (point) in
+            if !sentPoint.contains(point) && pointsToSendNow.count < 50 {
+                sentPoint.append(point)
+                pointsToSendNow.append(point)
+            }
+        }
+        
+        if pointsToSendNow.count > 0 {
+            print( "Sending \(pointsToSendNow.count) points" )
+            let data = prepareDataForPoints(points: pointsToSendNow)
+            sendUdp(port: 8888, data: data)
+        }
+    }
+    
+    func sendUdp( port: Int, data: Data ) {
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -86,6 +113,10 @@ class ViewController: UIViewController {
         UIGraphicsEndImageContext()
         
         tempImageView.image = nil
+        
+        while listPoint.count - sentPoint.count > 0 {
+            sendPoints( );
+        }
     }
     
     func drawLine(from: CGPoint, to: CGPoint) {
@@ -107,5 +138,57 @@ class ViewController: UIViewController {
         tempImageView.image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
     }
+    
+    func prepareDataForPoints( points: [CGPoint] ) -> Data {
+        var data: Data = Data( )
+        
+        data.append(contentsOf: [0x03])
+        data.append(contentsOf: splitToUint8(value: points.count))
+        
+        points.forEach { (point) in
+            data.append(contentsOf: splitToUint8(value: Int(point.x)))
+            data.append(contentsOf: splitToUint8(value: Int(point.y)))
+        }
+        
+        return data;
+    }
+    
+    func prepareDataForClearing( ) -> Data {
+        var data: Data = Data( )
+        data.append(contentsOf: [0x00])
+        return data;
+    }
+    
+    func prepareDataForSize( isWidth: Bool, value: Int ) -> Data {
+        var data: Data = Data( )
+        
+        if isWidth == true {
+            data.append(contentsOf: [0x01])
+        } else {
+            data.append(contentsOf: [0x02])
+        }
+        
+        data.append(contentsOf: splitToUint8(value: value))
+        
+        return data;
+    }
+    
+    func splitToUint8( value: Int ) -> [UInt8] {
+        var final: [UInt8] = []
+        final.append(UInt8((value&0xFF00)>>8))
+        final.append(UInt8(value&0xFF))
+        return final
+    }
 }
 
+extension Data {
+    struct HexEncodingOptions: OptionSet {
+        let rawValue: Int
+        static let upperCase = HexEncodingOptions(rawValue: 1 << 0)
+    }
+    
+    func hexEncodedString(options: HexEncodingOptions = []) -> String {
+        let format = options.contains(.upperCase) ? "%02hhX" : "%02hhx"
+        return map { String(format: format, $0) }.joined()
+    }
+}
