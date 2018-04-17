@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftSocket
 
 class ViewController: UIViewController {
     
@@ -19,9 +20,14 @@ class ViewController: UIViewController {
     var listPoint: [CGPoint] = []
     var sentPoint: [CGPoint] = []
     
+    let client = UDPClient(address: "127.0.0.1", port: 8888)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        client.send(data: prepareDataForSize(isWidth: true, value: Int(UIScreen.main.bounds.width)))
+        client.send(data: prepareDataForSize(isWidth: false, value: Int(UIScreen.main.bounds.height)))
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,6 +39,8 @@ class ViewController: UIViewController {
         mainImageView.image = nil
         listPoint = []
         sentPoint = []
+        
+        client.send(data: prepareDataForClearing())
     }
     
     @IBAction func sendAction(_ sender: Any) {
@@ -85,13 +93,8 @@ class ViewController: UIViewController {
         
         if pointsToSendNow.count > 0 {
             print( "Sending \(pointsToSendNow.count) points" )
-            let data = prepareDataForPoints(points: pointsToSendNow)
-            sendUdp(port: 8888, data: data)
+            client.send(data: prepareDataForPoints(points: pointsToSendNow))
         }
-    }
-    
-    func sendUdp( port: Int, data: Data ) {
-        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

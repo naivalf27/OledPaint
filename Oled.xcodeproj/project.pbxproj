@@ -12,6 +12,7 @@
 		0C7C81502086340B000C8E1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C814E2086340B000C8E1A /* Main.storyboard */; };
 		0C7C81522086340C000C8E1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C81512086340C000C8E1A /* Assets.xcassets */; };
 		0C7C81552086340C000C8E1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C7C81532086340C000C8E1A /* LaunchScreen.storyboard */; };
+		B53F2F6024D23ACAE9241560 /* Pods_Oled.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B9657F6343113F69FB87C9 /* Pods_Oled.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		0C7C81512086340C000C8E1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C7C81542086340C000C8E1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C7C81562086340C000C8E1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		498440A404C484780843734E /* Pods-Oled.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Oled.release.xcconfig"; path = "Pods/Target Support Files/Pods-Oled/Pods-Oled.release.xcconfig"; sourceTree = "<group>"; };
+		C8B9657F6343113F69FB87C9 /* Pods_Oled.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Oled.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF55D2B9C7F8095FC6886C76 /* Pods-Oled.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Oled.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Oled/Pods-Oled.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B53F2F6024D23ACAE9241560 /* Pods_Oled.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				0C7C81492086340B000C8E1A /* Oled */,
 				0C7C81482086340B000C8E1A /* Products */,
+				219A03485A3C0EDD906DE7F8 /* Pods */,
+				1E6BD96A967783A179F45001 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = Oled;
 			sourceTree = "<group>";
 		};
+		1E6BD96A967783A179F45001 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C8B9657F6343113F69FB87C9 /* Pods_Oled.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		219A03485A3C0EDD906DE7F8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FF55D2B9C7F8095FC6886C76 /* Pods-Oled.debug.xcconfig */,
+				498440A404C484780843734E /* Pods-Oled.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C7C81592086340C000C8E1A /* Build configuration list for PBXNativeTarget "Oled" */;
 			buildPhases = (
+				749E22015B6F2355B0FDAD31 /* [CP] Check Pods Manifest.lock */,
 				0C7C81432086340B000C8E1A /* Sources */,
 				0C7C81442086340B000C8E1A /* Frameworks */,
 				0C7C81452086340B000C8E1A /* Resources */,
+				43B5B4B6C8AD6479F1A36D71 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,6 +155,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		43B5B4B6C8AD6479F1A36D71 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Oled/Pods-Oled-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftSocket/SwiftSocket.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSocket.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Oled/Pods-Oled-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		749E22015B6F2355B0FDAD31 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Oled-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0C7C81432086340B000C8E1A /* Sources */ = {
@@ -278,15 +343,13 @@
 		};
 		0C7C815A2086340C000C8E1A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF55D2B9C7F8095FC6886C76 /* Pods-Oled.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H93HXZ7B6R;
 				INFOPLIST_FILE = Oled/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.appows.ios.Oled;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -296,15 +359,13 @@
 		};
 		0C7C815B2086340C000C8E1A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 498440A404C484780843734E /* Pods-Oled.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H93HXZ7B6R;
 				INFOPLIST_FILE = Oled/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.appows.ios.Oled;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
