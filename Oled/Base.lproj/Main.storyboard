@@ -25,20 +25,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="og0-hw-dKd">
-                                <rect key="frame" x="101" y="20" width="172" height="30"/>
+                                <rect key="frame" x="169" y="20" width="36" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6X1-rY-KiA">
                                         <rect key="frame" x="0.0" y="0.0" width="36" height="30"/>
                                         <state key="normal" title="Clear"/>
                                         <connections>
                                             <action selector="clearAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kre-28-7Gp"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sw-eD-L2s">
-                                        <rect key="frame" x="136" y="0.0" width="36" height="30"/>
-                                        <state key="normal" title="Send"/>
-                                        <connections>
-                                            <action selector="sendAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jMp-fK-eVH"/>
                                         </connections>
                                     </button>
                                 </subviews>

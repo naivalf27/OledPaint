@@ -20,14 +20,14 @@ class ViewController: UIViewController {
     var listPoint: [CGPoint] = []
     var sentPoint: [CGPoint] = []
     
-    let client = UDPClient(address: "127.0.0.1", port: 8888)
+    let client = UDPClient(address: "192.168.137.188", port: 8888)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        client.send(data: prepareDataForSize(isWidth: true, value: Int(UIScreen.main.bounds.width)))
-        client.send(data: prepareDataForSize(isWidth: false, value: Int(UIScreen.main.bounds.height)))
+        client.send(data: prepareDataForSize(isWidth: false, value: Int(UIScreen.main.bounds.width)))
+        client.send(data: prepareDataForSize(isWidth: true, value: Int(UIScreen.main.bounds.height)))
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,17 +41,6 @@ class ViewController: UIViewController {
         sentPoint = []
         
         client.send(data: prepareDataForClearing())
-    }
-    
-    @IBAction func sendAction(_ sender: Any) {
-        let width = self.view.frame.size.width
-        let height = self.view.frame.size.height
-        let listPoint = self.listPoint
-        
-        
-        print(listPoint)
-        
-        print("send")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -72,8 +61,9 @@ class ViewController: UIViewController {
     }
     
     func addPoint(_ point: CGPoint) {
-        if !listPoint.contains(point) {
-            listPoint.append(point)
+        let p = CGPoint(x: UIScreen.main.bounds.height - point.y, y: point.x)
+        if !listPoint.contains(p) {
+            listPoint.append(p)
         }
         
         while listPoint.count - sentPoint.count > 40 {
@@ -85,7 +75,7 @@ class ViewController: UIViewController {
         var pointsToSendNow: [CGPoint] = []
         
         listPoint.forEach { (point) in
-            if !sentPoint.contains(point) && pointsToSendNow.count < 50 {
+            if !sentPoint.contains(point) && pointsToSendNow.count < 40 {
                 sentPoint.append(point)
                 pointsToSendNow.append(point)
             }
@@ -158,7 +148,7 @@ class ViewController: UIViewController {
     
     func prepareDataForClearing( ) -> Data {
         var data: Data = Data( )
-        data.append(contentsOf: [0x00])
+        data.append(contentsOf: [0x04])
         return data;
     }
     
