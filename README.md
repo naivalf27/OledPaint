@@ -31,5 +31,5 @@ Drawing app with Wemos D1 Mini
 - Run xcode and launch swift project
 - Plug your Iphone to your Mac os x
 - Start drawing and see the result on the Oled
-![alt text](img/project.jpg)
+![alt text](img/project.jpeg)
 
