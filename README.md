@@ -23,14 +23,14 @@ Drawing app with Wemos D1 Mini
 - Install Cocoapods
 - In your terminal :
 `$ cd code_swift/`
-`$ pod init`
+`$ pod install`
 
 # How to launch
 - Connect your Iphone and Mac os x on the same network
 - Plug the arduino to your Mac os x
 - Send Arduino code in your Arduino
 - Run xcode and launch swift project
-- Plug your Iphone to your Mac os x
+- Plug your Iphone to your Mac os x (Modify the ip address for UDP) and run the project on the Iphone (Or you could use the simulator)
 - Start drawing and see the result on the Oled
 ![alt text](img/project.jpeg)
 
